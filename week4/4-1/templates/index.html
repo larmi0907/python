@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main page</title>
+    <!-- 플라스크에서 스타일시트 링크시 잘못된 경로입니다. -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+        
+    <!-- 옳은 접근 // 플라스크는 파일형식이 다소 굳어져있어서 폴더명 지켜줘야함 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>여기는 메인페이지 입니다</h1>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--js-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--google font-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap" rel="stylesheet">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>2주차 과제 이아람</title>
+
+</head>
+<body>
+    <div class="warp">
+        <div class="imgBox">
+            <img src="https://www.mypetsname.com/wp-content/uploads/2019/09/Animal-Names.jpg" alt="너굴맨">
+        </div>
+        <div class="txtBox">
+            <div class="txttit">
+                <h1>너굴맨 카페</h1>
+                <p><b>입장권 가격 : 3,000원/장</b></p>
+            </div>
+            <p>이 너굴맨은 사실 특별한 사연을 가지고있어요. 무리에서 낙오되어 카페에서 성장해온 아기 너구리는 사람을 가족이자 친구로 생각한답니다. 너굴맨의 또 다른 친구가 되어주세요!</p>
+        </div>
+        <div class="inputBox">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-user-name">주문자 이름</span>
+                </div>
+                <input type="text" class="form-control user-name" aria-label="Small" aria-describedby="inputGroup-user-name">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected>--수량을 선택하세요--</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-adress">주소</span>
+                </div>
+                <input type="text" class="form-control user-adress" aria-label="Small" aria-describedby="inputGroup-adress">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-number">전화번호</span>
+                    </div>
+                    <input type="text" class="form-control user-number" aria-label="Small" aria-describedby="inputGroup-number">
+                </div>
+                <div type="button" class="btn btn-primary" id="orderBt">주문하기</div>
+                <div class="orders">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>주문자 이름</th>
+                                <th>수량</th>
+                                <th>주소</th>
+                                <th>전화번호</th>
+                            </tr>
+                        </thead>
+                        <tbody id="oder-list">
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+
+    <!-- 4주차 과제부분 -->
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('.orders').html('');
+            listing();
+        });
+
+        function make_list(){
+            let userName = $('.user-name');
+            let selectNum = $('#inputGroupSelect01');
+            let userAdress = $('.user-adress');
+            let userNumber = $('.user-number');
+
+            $('#orderBt').click(function(){
+                if( userName.val() == '' ){
+                    alert('주문자명을 입력해주세요.');
+                    userName.focus();
+                }else if( selectNum.val() == "--수량을 선택하세요--" ){
+                    alert('수량을 선택해주세요.');
+                    selectNum.focus();
+                }else if( userAdress.val() == '' ){
+                    alert('주소를 입력해주세요.');
+                    userAdress.focus();
+                }else if( userNumber.val() == '' ){
+                    alert('전화번호를 입력해주세요.');
+                    userNumber.focus();
+                }else{
+                    userName.val('');
+                    selectNum.val('');
+                    userAdress.val('');
+                    userNumber.val('');
+
+                    $('#orderBt').text('주문완료');
+                }
+            });
+
+            // POST 연습: 클라이언트(get) 정보 삽입하기
+            let data_give = { // 1. 클라이언트가 준 이름, 수량, 주소, 휴대폰번호 가져오기
+                name_recive : userName,
+                select_recive : selectNum,
+                adress_recive : userAdress,
+                number_recive : userNumber
+            }
+            
+            $.ajax({
+                    type: "POST",
+                    url: "/list",
+                    data: data_give, // 2. DB에 정보 삽입하기
+                    success: function (response) {
+                        if( response['result'] == 'succes' ){
+                            alert(response['msg']); // 3. 요청 성공했을 때 리뷰를 올바르게 화면에 나타내기
+                            window.location.reload();
+                        }
+                    }
+            });
+        }
+
+
+        function listing(){
+            // 1. 리뷰 목록을 서버에 요청하기
+            // 2. 요청 성공 여부 확인하기
+            // 3. 요청 성공했을 때 리뷰를 올바르게 화면에 나타내기
+            // $.ajax({
+            //     type: "GET",
+            //     url: "/list",
+            //     data: {},
+            //     success: function (response) {
+            //         if( response['result'] == 'succes' ){
+            //             alert(response['msg']);
+            //         } esle {
+            //             alert('입력하신 정보를 받아오지 못했습니다.');
+            //         }
+            //     }
+            // });
+        }
+
+
+
+
+
+
+
+
+
+        // 구매자 정보 업데이트 함수
+        // function makeList() {
+        //     let temp_thml = '<tr>\
+        //                         <td>'++'</td>\
+        //                         <td>2</td>\
+        //                         <td>3</td>\
+        //                         <td>4</td>\
+        //                     </tr>'
+
+        //     $('#oder-list').append(temp_thml);
+        // }
+    </script>
+</body>
+</html>
