@@ -23,15 +23,15 @@ def write_list():
     adress_recive = repuest.form['adress_give']
     number_recive =request.form['number_give']
 
-   list = {
-      'name' : name_recive,
-      'select' : select_recive,
-      'adress' : adress_recive,
-      'number' : number_recive
-   }
+list = {
+  'name' : name_recive,
+  'select' : select_recive,
+  'adress' : adress_recive,
+  'number' : number_recive
+}
 
     # 2. DB에 정보 삽입하기
-   db.manylist.inset_one(list)
+   db.manylist.insert_one(list)
     # 3. 성공 여부 & 성공 메시지 반환하기
     return jsonify({'result':'success', 'msg': '리뷰가 성공적으로 작성되었습니다.'})
 
